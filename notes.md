@@ -60,3 +60,30 @@ JavaScript heeft een taalfeature, ASI: Automatic Semicolon Insertion. Wat dat be
 - npm had ooit zelfs een [funny coding style](https://carta.tech/man-pages/man7/npm-coding-style.7.html) waar ze zeiden ze zo min mogelijk te gebruiken
 - De meeste projecten gebruiken [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) als formatting-tool, die zet wel automatisch `;` neer overal.
 
+
+## Build tools
+
+- Grunt
+- gulp
+  ```ts
+  gulp.src('./**/*.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('./dist')); // => CSS
+  ```
+
+### Module bundlers
+
+Fancy build tools, specifiek voor het klaarmaken van een frontend voor de browser. Denk aan Sass compileren, TypeScript compileren, fonts/afbeeldingen optimalizeren, ...
+
+- Vite. Werkt in 2 modi:
+  - Dev: gebruik ES Modules voor snel pagina refreshen
+  - Prod: alles maximaal bundlen/minifyen/optimaliseren
+- webpack / rspack
+- Rollup / Rolldown
+- Parcel
+
+Is bundlen nog nodig? [V8 zegt van wel](https://v8.dev/features/modules).
+
+## Coole links
+
+- TypeScript-parser [wordt herschreven in Go](https://devblogs.microsoft.com/typescript/typescript-native-port/): https://github.com/microsoft/typescript-go
