@@ -184,9 +184,83 @@ if (x > -4000) { ... }
 
 
 
+## Paradigmas der webdevelopment
+
+- SPA - Single Page Application  CSR
+  - geen/heel wat minder paginarefreshes
+  - hoort intuitief/gebruiksvriendelijk te zijn
+  - nadeel: complexiteit  dependencies
+  - hip
+  - Angular Vue React Svelte Qwik Solid Knockout Blazor WASM/Server
+  - AJAX
+- SSR - Server-side rendering
+  - om de page load te versnellen
+  - initiele load chunky
+  - altijd complementair aan de SPA
+  - Next.js (React)  Nuxt.js (Vue) @angular/ssr  ASP.NET Core QwikCity SolidStart SvelteKit
+  - AJAX
+- SSG - Static Site Generation
+  - bol.com amazon.com wehkamp training.infosupport.com  documentatiewebsites
+    - /monitoren/lg-38748392  controller => service => cache => db => template @for
+    - @ build   monitor-lg-387.html  duizenden .html
+  - Next.js Nuxt.js 11ty HUGO  @angular/ssr
+  - AJAX
+- MPA - Multi Page Application
+  - ASP.NET WebForms/MVC/Core MVC/Razor Pages   Blazor Static SSR  <EditForm Enhance>
+  - PHP  Laravel
+  - Java Spring
+  - ieder klikje betekent een volledige paginarefresh  Flash Of Unstyled Content
+  - relatief simpel
+  - minder dynamisch
+  - niet hip
+  - AJAX
+  - Express
+
+Node.js webframeworks:
+
+- Nest.js
+- Next.js
+- @angular/ssr
+- SvelteKit
+- QwikCity
+- SolidStart
+- Express
+- Hapi
+- socket.io - realtime communicatie   SignalR
+- Fresh (Deno)
+
+**Nest.js vs Express**
+
+- veel meer structuur
+- validatie
+- TypeScript
+- auth
+- dependency injection
+- modulair
+
+**Nest.js vs ASP.NET Core vs bijv. Spring**
+
+- Lastig. Nest.js is iets minder groot ecosysteem en wat minder gebruikt, maar op zichzelf een kwalitatief goed product. Welke taal je je backend in wil maken lijkt het voornaamste discussiepunt te zijn. ASP.NET Core is wel veelzijdiger.
 
 
+### gRPC: voor gRPC-communicatie
+
+- gRPC Remote Procedure Call
+- communicatieframework
+- alternatief op:
+  - REST
+    - GET POST PUT PATCH DELETE
+  - SOAP
+    - volledige uitdrukkingsvrijheid
+- volledige uitdrukkingsvrijheid  `getProducts()`  `updateRijbewijs()`
+- heule grote hoeveelheden data verstuurt
+  - begint vanaf 10MB  Netflix
+  - efficient binair formaat - Protobuf .proto
+- zeer geschikt bij traag serializatieproces of als je met ingewikkelde datatypen werkt - JSON kan enkel `string` `number` `boolean`, maar niks complex
+- gebaseerd op HTTP/2 (SPDY)  sneller (multiplexing)  veiliger (HTTPS only)
+  - mogelijk ooit HTTP/3? (QUIC - Quality UDP Internet Connections) nog sneller
 
 ## Coole links
 
 - TypeScript-parser [wordt herschreven in Go](https://devblogs.microsoft.com/typescript/typescript-native-port/): https://github.com/microsoft/typescript-go
+
