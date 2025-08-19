@@ -1,0 +1,20 @@
+{
+  "name": "demo-vitest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "stryker": "stryker run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@stryker-mutator/vitest-runner": "^9.0.1",
+    "@vitest/coverage-v8": "3.2.4",
+    "vitest": "^3.2.4"
+  }
+}
