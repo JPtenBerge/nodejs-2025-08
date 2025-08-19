@@ -84,6 +84,109 @@ Fancy build tools, specifiek voor het klaarmaken van een frontend voor de browse
 
 Is bundlen nog nodig? [V8 zegt van wel](https://v8.dev/features/modules).
 
+## Testing
+
+Alles tools:
+
+- Karma
+- Jasmine
+- Jest
+- Mocha
+- Vitest
+- Chai
+- Sinon
+
+Angular: Karma + Jasmine / experimental Jest/Vitest   ng test  Vitest extensie
+React: Jest
+
+All-in-one:
+- Jest: ouderwets   import {}  Babel   TypeScript
+- Vitest: modern  <=== import TypeScript ✅✅✅✅✅
+
+Gecategoriseerd:
+
+**Test runners**
+
+- Karma
+- Jest
+- Mocha
+- Vitest
+
+**Test frameworks**
+
+- Jasmine
+- Jest
+- Mocha
+- Vitest
+
+**Assertions libraries**
+
+- Jest
+- Mocha (heel basaal)
+- Vitest
+- Chai
+
+**Mocking**
+
+- Jasmine
+- Jest
+- Sinon
+- Vitest
+
+
+### Stryker
+
+Mutation testing - je code wordt muteren.
+
+```ts
+if (x > 40) { ... }
+```
+
+mutanten:
+
+```ts
+if (x < 40) { ... }
+if (x > 4000) { ... }
+if (x > -4000) { ... }
+```
+
+## End-to-end testing
+
+- UI geautomatiseerd aan het aansturen
+- geen mocks (zo wel, dan is het eigenlijk UI testen)
+- Playwright
+  - van Microsoft
+  - tests schrijven in TypeScript - of C#/Java/Python
+  - robuuste API
+  - veel browsers
+  - geen gekke paywalls
+  - geschikt voor keyboard-driven UI
+    ```ts
+    await page.keyboard.press('')
+    ```
+- Cypress
+  - minder geschikt voor keyboard-driven UIs, typen moet altijd in een element:
+    ```ts
+    cy.get('..').type('..')
+    ```
+  - Cypress UI is mooi
+  - gebruikt Bluebird Promises in plaats van native Promises, niet `await`-able
+  - TypeScript... het kan, maar je bent achteraf aan het beschrijven hoe eigen custom uitbreidingen werken dan dat het rechtstreeks erop inhaakt
+  - architectuur... Cypress batcht alle instructies en voert dat uit op de browser. Tussentijdse interactie met de browser is niet onmogelijk, maar is het niet voor gemaakt
+  - [assertions zijn meh](https://docs.cypress.io/app/references/assertions#Common-Assertions)
+    ```ts
+    cy.get('form').find('input').should('not.have.class', 'disabled');
+    cy.get('li.selected').should('have.length', 3);
+    cy.get('a').parent('span.help').should('not.contain', 'click me');
+    ```
+    Die `.should()`, het is typesafe doordat ze 110+ string-overloads definieren op de functie, maar het oogt niet zo chic. En die typesafety is er dus eigenlijk echt alleen als je in TS werkt, out of the box werkt Cypress met JS.
+
+
+
+
+
+
+
 ## Coole links
 
 - TypeScript-parser [wordt herschreven in Go](https://devblogs.microsoft.com/typescript/typescript-native-port/): https://github.com/microsoft/typescript-go
