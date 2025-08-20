@@ -240,8 +240,16 @@ Node.js webframeworks:
 
 **Nest.js vs ASP.NET Core vs bijv. Spring**
 
-- Lastig. Nest.js is iets minder groot ecosysteem en wat minder gebruikt, maar op zichzelf een kwalitatief goed product. Welke taal je je backend in wil maken lijkt het voornaamste discussiepunt te zijn. ASP.NET Core is wel veelzijdiger.
+Lastig. Nest.js is iets minder groot ecosysteem en wat minder gebruikt, maar op zichzelf een kwalitatief goed product. Welke taal je je backend in wil maken lijkt het voornaamste discussiepunt te zijn. ASP.NET Core is wel veelzijdiger.
 
+Minimal API heeft wel fancy typed results wat direct inhaakt op je returnwaarden en waar OpenAPI-docs op gebaseerd kunnen worden. Erg chic die harde koppeling.
+
+```cs
+public static Results<NotFound<string>, ValidationProblem<Park>, Ok<Park>>  Put(int id, Park newPark, MijnDbContext context, IValidator<Park> validator)
+{
+	return TypedResults.NotFound();
+}
+```
 
 ### gRPC: voor gRPC-communicatie
 
@@ -260,7 +268,44 @@ Node.js webframeworks:
 - gebaseerd op HTTP/2 (SPDY)  sneller (multiplexing)  veiliger (HTTPS only)
   - mogelijk ooit HTTP/3? (QUIC - Quality UDP Internet Connections) nog sneller
 
+## API testing tools
+
+- Postman  (PAYWALL)
+- `.rest` `.http`
+- extensies voor VS Code
+  - Thunder Client
+  - REST Client  `.rest` `.http`
+- Insomnia  (paywall)
+- MockServer?
+- Bruno
+- Hoppscotch
+- Swagger UI ❌
+  - lelijke UI, lelijke "Execute"-knop, geen dark mode, geen history, lelijk.
+
+## TypeScript/JavaScript
+
+### Snelle conversies
+
+`+tekst` voor string naar getal, `!!` voor een echte boolean.
+
+```ts
+let getalInt1 = parseInt(id);
+let getalInt2 = Number(id);
+// let getalInt3 = id * 1; // In JavaScript prima, in TypeScript niet
+let getalInt3 = +id;
+
+let isHijGevuld1: boolean = 'id' ? true : false;
+let isHijGevuld2 = !!id;
+```
+
+
+
 ## Coole links
 
 - TypeScript-parser [wordt herschreven in Go](https://devblogs.microsoft.com/typescript/typescript-native-port/): https://github.com/microsoft/typescript-go
+- [Google API Improvement Proposals](https://google.aip.dev/1): best practices omtrend API design
+
+
+
+
 
