@@ -1,74 +1,54 @@
 import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  HttpException,
-  HttpStatus,
-  NotFoundException,
-  Param,
-  Post,
+	Body,
+	Controller,
+	Get,
+	HttpCode,
+	HttpException,
+	HttpStatus,
+	NotFoundException,
+	Param,
+	Post,
 } from '@nestjs/common';
 import { SnackService } from './snack.service';
 
-import {
-  createSnackGetAllSnackDto,
-  type SnackGetAllResponseDto,
-} from './dtos/snack-get-all-response.dto';
-import {
-  createSnackGetResponseDto,
-  type SnackGetResponseDto,
-} from './dtos/snack-get-response.dto';
-import {
-  createSnackFromPostRequestDto,
-  type SnackPostRequestDto,
-} from './dtos/snack-post-request-dto';
-import {
-  createSnackPostResponseDto,
-  type SnackPostResponseDto,
-} from './dtos/snack-post-response.dto';
+import { createSnackGetAllSnackDto, type SnackGetAllResponseDto } from './dtos/snack-get-all-response.dto';
+import { createSnackGetResponseDto, type SnackGetResponseDto } from './dtos/snack-get-response.dto';
+import { createSnackFromPostRequestDto, type SnackPostRequestDto } from './dtos/snack-post-request-dto';
+import { createSnackPostResponseDto, type SnackPostResponseDto } from './dtos/snack-post-response.dto';
 
-@Controller()
+@Controller('/snacks')
 export class SnackController {
-  constructor(private readonly snackService: SnackService) {}
+	constructor(private readonly snackService: SnackService) {}
 
-  @Get()
-  getAll(): SnackGetAllResponseDto {
-    return {
-      snacks: this.snackService
-        .getAll()
-        .map((s) => createSnackGetAllSnackDto(s)),
-    };
-  }
+	@Get()
+	getAll(): SnackGetAllResponseDto {
+		return {
+			snacks: this.snackService.getAll().map(s => createSnackGetAllSnackDto(s)),
+		};
+	}
 
-  @Get('/:id')
-  get(@Param('id') id: string): SnackGetResponseDto {
-    // let getalInt1 = parseInt(id);
-    // let getalInt2 = Number(id);
-    // let getalInt3 = id * 1;
-    // let getalInt3 = ;
+	@Get('/:id')
+	get(@Param('id') id: string): SnackGetResponseDto {
+		// TODO: Valideer dat id een getal is
+		// ...
 
-    // let isHijGevuld: boolean = 'bla' ? true : false;
-    // let isHijGevuld2 = !!id;
+		// retrieve and return
+		let snack = this.snackService.get(+id);
+		if (!snack) {
+			throw new NotFoundException(`Snack met ID ${+id} niet gevonden`);
+		}
 
-    let snack = this.snackService.get(+id);
-    if (!snack) {
-      throw new NotFoundException(`Snack met ID ${+id} niet gevonden`);
-    }
+		return createSnackGetResponseDto(snack);
+	}
 
-    return createSnackGetResponseDto(snack);
-  }
+	@Post()
+	@HttpCode(201)
+	post(@Body() dto: SnackPostRequestDto): SnackPostResponseDto {
+		// TODO: IMPLEMENTEER VALIDATIE
+		// ...
 
-  @Post()
-  @HttpCode(201)
-  post(@Body() dto: SnackPostRequestDto): SnackPostResponseDto {
-
-    // IMPLEMENTEER VALIDATIE
-
-
-    let updatedSnack = this.snackService.add(
-      createSnackFromPostRequestDto(dto),
-    );
-    return createSnackPostResponseDto(updatedSnack);
-  }
+		// add
+		let updatedSnack = this.snackService.add(createSnackFromPostRequestDto(dto));
+		return createSnackPostResponseDto(updatedSnack);
+	}
 }
