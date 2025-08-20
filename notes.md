@@ -298,14 +298,49 @@ let isHijGevuld1: boolean = 'id' ? true : false;
 let isHijGevuld2 = !!id;
 ```
 
+## Tailwind
 
+CSS in je HTML. Middels utility classes.
+
+
+Vroegah:
+
+```html
+<div class="alert">
+<div class="dashboard-panel">
+```
+
+En dan in `.scss`/`.css`:
+
+```css
+.dashboard-panel {
+
+}
+```
+
+Maar die classes kunnen conflicteren met andere classes voor andere pagina's. Ook vonden developers het vaak maar irritant om voor elk lullig dingetje weer een functionele naam te bedenken. Plus, als je ergens een class in gebruik zag, als je dan wilde kijken "waar staat de CSS hiervoor gedefinieerd" dan was het vaak niet een Ctrl+klik wat dat inzicht gaf, vaak was het Ctrl+Shift+F de hele codebase doorzoeken naar die classnaam. Gewoon irritant.
+
+Scoped CSS maakt dit al wat beter:
+
+- `jouw-component.css`
+- `jouw-component.ts`
+
+Maar Tailwind verlicht dit soort gedoe ook:
+
+```html
+<div class="flex p-3 m-5 bg-slate-300 hover:bg-slate-700 dark:bg-slate-900 lg:w-60 md:w-80 xs:w-full">
+<div style="display: flex; padding: 3rem; margin: 5rem; background-color: #fjdjd9">
+```
+
+Groostste nadelen:
+
+- HTML wordt wat bloated. Zie extensies als Tailwind Fold.
+- Aanpassingen doorvoeren op elementen die ongeveer dezelfde opmaak hebben kan wat irritant zijn. Multi-cursor editing helpt daar wel wat bij.
+
+Vergeleken met de issues van vroegah is dat eigenlijk wel dikke prima.
 
 ## Coole links
 
 - TypeScript-parser [wordt herschreven in Go](https://devblogs.microsoft.com/typescript/typescript-native-port/): https://github.com/microsoft/typescript-go
 - [Google API Improvement Proposals](https://google.aip.dev/1): best practices omtrend API design
-
-
-
-
-
+- [DB ranking](https://db-engines.com/en/ranking)
